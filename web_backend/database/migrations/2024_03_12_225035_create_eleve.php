@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('prenom');
             $table->string('email_Parents')->unique();
             $table->string('Tel_Parents');
-    
+            
             $table->timestamps();
         });
     }

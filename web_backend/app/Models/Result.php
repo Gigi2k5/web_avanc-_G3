@@ -10,7 +10,7 @@ class Result extends Model
 
     protected $fillable = ['student_id', 'subject_id', 'interrogation_note_1', 'interrogation_note_2', 'homework_note_1', 'homework_note_2', 'coefficient'];
 
-    // Relation avec l'élève
+    // Relation avec l'él
     public function student()
     {
         return $this->belongsTo('App\Student');
