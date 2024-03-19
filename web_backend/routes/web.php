@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+
+
+use App\Http\Controllers\ResultController;
+
+Route::get('/CM', function () {
+    return view('CM');
+});
+
+Route::post('/calculate-averages', [ResultController::class, 'calculateAverages'])->name('calculate-averages');

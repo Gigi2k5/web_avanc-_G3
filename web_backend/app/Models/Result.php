@@ -8,28 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 class Result extends Model
 {
 
-    protected $fillable = ['student_id', 'subject_id', 'interrogation_note_1', 'interrogation_note_2', 'homework_note_1', 'homework_note_2', 'coefficient'];
+    protected $fillable = ['eleve_id', 'matiere_id', 'note1_interro', 'note2_interro ', 'note_devoir1', 'note_devoir2', 'coefficient'];
 
-    // Relation avec l'él
+    // Relation avec l'éleve 
     public function student()
     {
-        return $this->belongsTo('App\Student');
+        return $this->belongsTo('App\eleve');
     }
 
     // Relation avec la matière
     public function subject()
     {
-        return $this->belongsTo('App\Subject');
+        return $this->belongsTo('App\matiere');
     }
 
     // Méthode pour calculer la moyenne par matière avec coefficient
     public function calculateSubjectAverage()
     {
-        $interrogationAverage = ($this->interrogation_note_1 + $this->interrogation_note_2) / 2;
-        $homeworkAverage = ($this->homework_note_1 + $this->homework_note_2) / 2;
-        $weightedAverage = ($interrogationAverage + $homeworkAverage) / 2 * $this->coefficient;
+        $moyInterro = ($this->note1_interro + $this->note2_interro) / 2;
+        $moyenne_coefficier = ($this->note_devoir1 + $this->note_devoir2 + $moyInterro ) / 3;
 
-        return $weightedAverage;
+        return  $moyenne_coefficier;
     }
     use HasFactory;
 }

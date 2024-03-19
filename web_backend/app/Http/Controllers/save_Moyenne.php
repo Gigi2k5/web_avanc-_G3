@@ -8,10 +8,27 @@ use App\student;
 
 class save_Moyenne extends Controller
 {
+    public function calculateAverages()
+    {
+        // Récupérer tous les résultats
+        $results = Result::all();
+
+        // Parcourir les résultats pour calculer la moyenne de chaque résultat
+        foreach ($results as $result) {
+            // Appeler la méthode calmoyenne() pour calculer la moyenne
+            $average = $result->calculateSubjectAverage();
+            // Faites quelque chose avec la moyenne calculée, comme l'enregistrer dans une base de données ou l'afficher
+        }
+
+        // Rediriger avec un message de succès
+        return redirect()->back()->with('success', 'Calcul des moyennes effectué avec succès.');
+    }
+
+
     public function store(Request $request)
     {
      // Récupérer l'identifiant de l'élève depuis la requête
-     $studentId = $request->input('student_id');
+     $studentId = $request->input('eleve_id');
 
      // Récupérer l'élève spécifique
      $student = Student::find($studentId);

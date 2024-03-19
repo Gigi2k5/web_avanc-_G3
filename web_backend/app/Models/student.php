@@ -5,21 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class student extends Model
+class Student extends Model
 {
-
     protected $fillable = ['name', 'class_id'];
 
     // Relation avec la classe
-    public function class()
+    public function schoolClass()
     {
-        return $this->belongsTo('App\Class');
+        return $this->belongsTo(SchoolClass::class, 'class_id');
     }
 
     // Relation avec les résultats
     public function results()
     {
-        return $this->hasMany('App\Result');
+        return $this->hasMany(Result::class);
     }
 
     // Méthode pour calculer la moyenne générale de l'élève sur tous ses résultats
